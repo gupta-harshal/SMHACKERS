@@ -27,7 +27,7 @@ def logs():
     return render_template('index4.html')
 @app.route('/loginform')
 def login():
-    render_template('login.html')
+    return render_template('login.html')
 @app.route('/signup',methods=['GET','POST'])
 def done():
     global fname
