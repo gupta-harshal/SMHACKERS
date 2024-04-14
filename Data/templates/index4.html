@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="../static/css/stylelogin.css">
+</head>
+<body>
+  <form action="{{url_for('done')}}" method="post">   
+  <div class="container">
+    <h1>Sign Up</h1>
+    <input type="text" placeholder="First Name" class="name" id="name" name="firstname"> <input type="text" placeholder="Last Name" class="name" name="lastname"><br>
+    <input type="text" placeholder="Email" class="in" id="email" name="email"><br>
+    <input type="text" placeholder="Password" class="in" name="password"><br>
+    <input type="text" placeholder="Confirm Password" class="in pass" id="pas" name="conpassword">
+    <input type="checkbox" id="terms" name="terms">
+    <label for="terms" class="terms">I accept the Terms of Use & Privacy Policy</label><br>
+    <button type="submit" id="signup">Sign Up</button>
+    <p>Already have an account?<a href="{{url_for('login')}}">Login here</a></p>
+    <p>Copyright © Shresth💫.com</p>
+  </div>
+  </form>
+ 
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDdHDBrqhOPJ28eGiiz-G4ghkpXNp4D3JE",
+  authDomain: "authentication-72477.firebaseapp.com",
+  projectId: "authentication-72477",
+  storageBucket: "authentication-72477.appspot.com",
+  messagingSenderId: "531438761765",
+  appId: "1:531438761765:web:759ea05a47493c980f8ccc",
+  measurementId: "G-3BFT18NN5F"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+console.log(app);
+</script>
+</html>
