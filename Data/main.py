@@ -5,7 +5,7 @@ from sqlalchemy import Integer, String, Float
 app=Flask(__name__)
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = r"sqlite:///C:\Users\hgp99\OneDrive\Desktop\Project\Data\login_data.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = r"sqlite:///login_data.db"
 
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
