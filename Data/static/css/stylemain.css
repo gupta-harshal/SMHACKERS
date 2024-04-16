@@ -6,8 +6,10 @@ box-sizing: border-box;
 }
 body{
 background-image: url("../image.jpg");
+height: 100vh;
+width:100%;
 background-repeat: no-repeat;
-background-size: 1500px 1000px;
+background-size: 1580px 837px;
 /* overflow-x: hidden; */
 }
 
@@ -26,6 +28,7 @@ display:flex;
 align-items: center;
 justify-content:right;
 position: fixed;
+z-index: 100;
 }
 
 .navbar ul li{
@@ -35,12 +38,37 @@ margin: 0 20px;
 position:relative;
 cursor: pointer;
 }
+ #random1{
+  /* text-transform: uppercase;
+  color:black;
+  font-weight: 500; */
+  color: black;
+  }
+  #random2{
+    /* text-transform: uppercase;
+    color:black;
+    font-weight: 500; */
+    color: black;
+    }
+    #random3{
+      /* text-transform: uppercase;
+      color:black;
+      font-weight: 500; */
+      color: black;
+      }
 
-.navbar ul li a{
+      #random4{
+        /* text-transform: uppercase;
+        color:black;
+        font-weight: 500; */
+        color: black;
+        }
+/* .navbar ul li a{
 text-transform: uppercase;
-color:white;
+color:rgb(249, 243, 243);
 font-weight: 500;
-}
+
+} */
 
 .navbar ul li::after{
 position:absolute;
@@ -111,6 +139,7 @@ width: 100%;
 .login{
 background-color: rgb(0, 0, 0);
 padding: 15px;
+color: white;
 }
 .icons{
 color: white;
@@ -133,7 +162,7 @@ justify-content: center;
 gap: 20px;
 box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
 position: relative;
-top: 330px;
+top: 320px;
 left:120px;
 }
 
