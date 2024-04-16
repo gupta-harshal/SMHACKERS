@@ -112,9 +112,9 @@
 
      <div class="box">
       <div id="gradient"></div>
-      <form class="searchbox" action="http://thecodeblock.com">
-              <input type="search" placeholder="Search" />
-              <button type="submit" value="search">&nbsp;</button>
+      <form class="searchbox" action="{{url_for('search')}}" method="POST">
+              <input type="search" placeholder="Search" name="searchuser" />
+              <button type="submit" href="{{url_for('search')}}"value="search">&nbsp;</button>
           </form>
         <!-- <div class="byline"><p>Detailed tutorial on <a href="http://thecodeblock.com/realistic-soft-search-box-in-pure-css/">TheCodeBlock</a></p></div> -->
      </div>
