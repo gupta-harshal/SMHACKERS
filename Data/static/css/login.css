@@ -1,0 +1,53 @@
+body{
+    /* background-color: plum; */
+    background-image: url('/WhatsApp\ Image\ 2024-04-16\ at\ 10.35.45\ PM.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid;
+    width: 400px;
+    height: 450px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: #f8f0e1;
+    color: #5c8f9d;
+}
+.in{
+    width: 360px;
+    position: relative;
+    margin: 10px;
+    height: 35px;
+    border-radius: 8px;
+    border-color: transparent;
+}
+.name{
+    margin: 10px;
+    margin-right: 0px;
+    width: 170px;
+    height: 35px;
+    border-radius: 8px;
+}
+button{
+margin-top: 30px;
+width: 250px;
+height: 45px;
+border-radius: 12px;
+font-size: 20px;
+cursor: pointer;
+background-color: #5da1b4;
+} 
+.pass{
+margin-bottom: 20px;
+}
+a{
+color: black;
+}
+p{
+position: relative;
+top: 25px;
+}
