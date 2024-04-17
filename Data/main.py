@@ -21,7 +21,7 @@ class User(db.Model):
     Status:Mapped[str] = mapped_column(String(250),nullable=False)
     Current_Company:Mapped[str] = mapped_column(String(250),nullable=False)
     Current_Working_Position:Mapped[str] = mapped_column(String(250),unique=False,nullable=False)
-    Image:Mapped[str] = mapped_column(String(250),nullable=False)
+    # Image:Mapped[str] = mapped_column(String(250),nullable=False)
     def to_dict(self):
         #Method 1. 
         dictionary = {}
@@ -61,7 +61,7 @@ def done():
     branch=request.form["branch"]
     company=request.form["company"]
     position=request.form["position"]
-    file=request.files["pic"]
+    # file=request.files["pic"]
     if password==conpassword:
         with app.app_context():
             new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}",Confirm_Password=f"{conpassword}",Branch=f"{branch}",Status=f"{status}",Current_Company=f"{company}",Current_Working_Position=f"{position}")
