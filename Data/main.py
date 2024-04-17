@@ -1,12 +1,12 @@
 from flask import Flask,render_template,request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Float
+from sqlalchemy import Integer, String, Float,func
 from flask import jsonify
 app=Flask(__name__)
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = r"sqlite:///login_data.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = r"sqlite:///user_data.db"
 
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
@@ -16,6 +16,12 @@ class User(db.Model):
     Last_Name: Mapped[str] = mapped_column(String(250), nullable=False)
     Email: Mapped[str] = mapped_column(String(250),unique=True, nullable=False)
     Password:Mapped[str]=mapped_column(String(250),nullable=False)
+    Confirm_Password:Mapped[str]=mapped_column(String(250),nullable=False)
+    Branch:Mapped[str] = mapped_column(String(250),nullable=False)
+    Status:Mapped[str] = mapped_column(String(250),nullable=False)
+    Current_Company:Mapped[str] = mapped_column(String(250),nullable=False)
+    Current_Working_Position:Mapped[str] = mapped_column(String(250),unique=False,nullable=False)
+    Image:Mapped[str] = mapped_column(String(250),nullable=False)
     def to_dict(self):
         #Method 1. 
         dictionary = {}
@@ -50,10 +56,15 @@ def done():
     lname=request.form["lastname"].title()
     email=request.form["email"]
     password=request.form["password"]
-    cpassword=request.form["conpassword"]
-    if password==cpassword:
+    conpassword=request.form["conpassword"]
+    status=request.form["status"]
+    branch=request.form["branch"]
+    company=request.form["company"]
+    position=request.form["position"]
+    file=request.files["pic"]
+    if password==conpassword:
         with app.app_context():
-            new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}")
+            new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}",Confirm_Password=f"{conpassword}",Branch=f"{branch}",Status=f"{status}",Current_Company=f"{company}",Current_Working_Position=f"{position}")
         db.session.add(new_user)
         db.session.commit()
 
@@ -76,12 +87,22 @@ def loggedin():
         return f"<h1>Successfully Logged in as {key.First_Name} {key.Last_Name}</h1>"
     else:
         return f"<h1>Your credentials dont match</h1>"
+@app.route('/about')
+def about():
+    return render_template('about.html')
 @app.route('/searchuser',methods=['GET','POST'])
 def search():
-    result = db.session.execute(db.select(User))
-    all_users = result.scalars().all()
-    user_id=request.form['searchuser']
-    return jsonify(users=[user.to_dict() for user in all_users])
+    user_id = request.form['searchuser'].lower()
 
+    # Retrieve users with matching first name (case-insensitive)
+    matching_users = []
+    users = User.query.filter(func.lower(User.First_Name) == user_id).all()
+    for user in users:
+        matching_users.append(user.to_dict())
+
+    if matching_users:
+        return render_template('namecard.html',users=matching_users,var=True,name=user_id)
+    else:
+        return render_template('namecard.html',var=False,name=user_id)
 if __name__=="__main__":
     app.run(debug=True)

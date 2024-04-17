@@ -11,7 +11,7 @@
         <div class="navbar">
             <ul>
                 <li class="x"><a  >HOME</a></li>
-                <li class="x"><a   >ABOUT US</a></li>
+                <li class="x"><a href="{{url_for('about')}}">ABOUT US</a></li>
                 <li class="x"><a >TOOLS</a> </li>
                 <li class="x"><a  >CONNECT</a></li>
                 <li ><a class="login" href="{{url_for('logs')}}">LOG IN</a></li>
@@ -114,7 +114,7 @@
       <div id="gradient"></div>
       <form class="searchbox" action="{{url_for('search')}}" method="POST">
               <input type="search" placeholder="Search" name="searchuser" />
-              <button type="submit" href="{{url_for('search')}}"value="search">&nbsp;</button>
+              <button type="submit" value="search">&nbsp;</button>
           </form>
         <!-- <div class="byline"><p>Detailed tutorial on <a href="http://thecodeblock.com/realistic-soft-search-box-in-pure-css/">TheCodeBlock</a></p></div> -->
      </div>

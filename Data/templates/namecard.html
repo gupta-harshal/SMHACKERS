@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/namecard.css">
+</head>
+<body>
+    <div class="box">
+        <div id="gradient"></div>
+        <form class="searchbox" action="{{url_for('search')}}" method="post">
+                <input type="search" placeholder="{{name}}" name="searchuser"/>
+                <button type="submit" value="search">&nbsp;</button>
+            </form>
+          <!-- <div class="byline"><p>Detailed tutorial on <a href="http://thecodeblock.com/realistic-soft-search-box-in-pure-css/">TheCodeBlock</a></p></div> -->
+       </div>
+       {%if var==True%}
+       {%for data in users:%}  
+       <div class="id">
+       <img src="https://dmxg5wxfqgb4u.cloudfront.net/2023-05/WALKER_JOHNNY_05-13.png" alt="">
+       <h2>{{data.First_Name.upper()+" "+data.Last_Name.upper()}}</h2>
+       <h3>{{data.Status}}<br>{{data.Branch}}</h3>
+       <!-- HTML !-->
+<button class="button-7" role="button">FOLLOW +</button>
+<!-- HTML !-->
+<button class="button-6" role="button">CONNECT</button>
+
+<!-- HTML !-->
+<button class="button-11" role="button">View full profile</button>
+{%endfor%}
+{%else%}
+<h1>No data found</h1>
+{%endif%}
+       </div>
+</body>
+</html>
