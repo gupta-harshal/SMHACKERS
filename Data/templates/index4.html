@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <style>
+  body{
+    background-image: url("../static/WhatsApp\ Image\ 2024-04-16\ at\ 10.35.35\ PM.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
     form {
   display: flex;
   flex-direction: column;
@@ -13,6 +18,15 @@
   margin: auto;
   position: relative;
   top: 50px;
+}
+.box{
+  width: 800px;
+  background-color: antiquewhite;
+  height: 700px;
+  position: relative;
+  left: 300px;
+  top: 20px;
+  border-radius: 50px;
 }
 
 label {
@@ -33,52 +47,148 @@ input[type="submit"] {
   color: white;
   padding: 10px;
   cursor: pointer;
+  position: relative;
+  top: -130px;
+  border-radius: 50px;
 }
 
 input[type="file"] {
   margin-bottom: 20px;
 }
+
+#name{
+  position: relative;
+  left: -200px;
+  top: 70px;
+}
+.name{
+  position: relative;
+  left: -200px;
+  top: 70px;
+
+}
+#email{
+  position: relative;
+  left: 200px;
+}
+.email{
+  position: relative;
+  left: 200px;
+}
+#password{
+  position: relative;
+  left: -200px;
+}
+.password{
+  position: relative;
+  left: -200px;
+}
+#confirm-password{
+  position: relative;
+  left: 200px;
+  top: -70px;
+}
+.cpass{
+  position: relative;
+  left: 200px;
+  top: -70px;
+}
+#branch{
+  position: relative;
+  left: -200px;
+  top: -70px;
+}
+.branch{
+  position: relative;
+  left: -200px;
+  top: -70px; 
+}
+#company{
+  position: relative;
+  left: -200px;
+  top: -40px;
+}
+.company{
+  position: relative;
+  left: -200px;
+  top: -40px;  
+}
+#position{
+  position: relative;
+  left: 200px;
+  top: -110px;  
+}
+.position{
+  position: relative;
+  left: 200px;
+  top: -110px;  
+}
+#firm-image{
+  position: relative;
+  top: -150px;
+  background-color: white;
+}
+.image{
+  position: relative;
+  top: -150px; 
+}
+h1{
+  position: relative;
+  left: 300px;
+  top: 50px;
+}
+#status{
+  position: relative;
+  top: -260px;
+  left: 200px;
+}
+.status{
+  position: relative;
+  top: -260px;
+  left: 200px;
+}
 </style>
 <body>
+  <div class="box">
+    <h1>SIGN UP</h1>
     <form action="{{url_for('done')}}" method="post">
-        <label for="fname">First Name:</label>
+        <label for="name" class="name">First Name:</label>
         <input type="text" id="name" name="firstname" required>
-
-        <label for="lname">Last Name:</label>
-        <input type="text" id="name" name="lastname" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
       
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="email" class="email">Last Name:</label>
+        <input type="email" id="email" name="lastname" required>
       
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="conpassword" name="conpassword" required>
+        <label for="password" class="password">Email:</label>
+        <input type="password" id="password" name="email" required>
+      
+        <label for="confirm-password" class="cpass">Password:</label>
+        <input type="password" id="confirm-password" name="password" required>
 
-        <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required>
-
-        <label for="branch">Branch</label>
-        <select name="branch">
+        <label for="branch" class="branch">Branch:</label>
+        <!-- <input type="branch" id="branch" name="branch" required> -->
+        <select name="branch" id="branch">
           <option value="CSE">CSE</option>
           <option value="DSA AI">DSA AI</option>
           <option value="ECE">ECE</option>
           <option value="ES IOT">ES IOT</option>
         </select>
 
-        <label for="company">Company Name</label>
-        <input type="company" id="confirm-password" name="company" required>
+        <label for="company" class="company">Company Name:</label>
+        <input type="company" id="company" name="company" required>
 
 
-        <label for="position">Current Position</label>
-        <input type="position" id="confirm-password" name="position" required>
+        <label for="position" class="position">Current Position:</label>
+        <input type="position" id="position" name="position" required>
+
+        <label for="position" class="status">Confirm Password:</label>
+        <input type="position" id="status" name="conpassword" required>
       
-        <label for="firm-image">Upload Your Image</label>
+        <label for="firm-image" class="image">Upload Your Image</label>
         <input type="file" id="firm-image" name="pic" accept="image/*">
       
         <input type="submit" value="SIGN UP">
       </form>
+    </div>
       <script>
         const inputImage = document.getElementById("firm-image");
 
