@@ -40,7 +40,7 @@ input[type="file"] {
 }
 </style>
 <body>
-    <form action="{{url_for('done')}}" method="post">
+    <form action="{{url_for('done')}}" method="post" enctype="multipart/form-data">
         <label for="fname">First Name:</label>
         <input type="text" id="name" name="firstname" required>
 
