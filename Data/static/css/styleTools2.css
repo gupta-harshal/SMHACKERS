@@ -1,0 +1,107 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+}
+
+.banner2{
+    height: 400px;
+    background-color:white;
+    width: 100%;
+     position:absolute;
+     bottom: 0px;
+     background-color: rgb(187, 245, 245);
+    
+}
+.banner{
+    height: 100vh;
+    width:100%;
+    background-image: linear-gradient(rgba(112, 127, 129, 0.75),rgba(67, 86, 88, 0.75)),url("../imgbg.webp");
+    background-size: cover;
+    background-position: center;
+}
+
+.element1{
+    position: absolute;
+    top: 140px;
+    left: 100px;
+}
+
+.element2{
+    position: absolute;
+    top: 140px;
+    left: 650px;
+}
+    
+
+.element3{
+    position: absolute;
+    top: 140px;
+    left: 1200px;
+
+}
+
+.element11{
+    position: absolute;
+    top:350px;
+    left:100px;
+    
+    
+}
+
+.element22{
+    position: absolute;
+    top:350px;
+    left:540px;
+    
+}
+
+.element33{
+    position: absolute;
+    top:350px;
+    left:1152px;
+    
+}
+.container{
+    color: white;
+    position: absolute;
+    top:100px;
+    left:50px;
+   
+}
+
+
+button{
+    position: relative;
+    margin-top: 100px;
+    width:400px;
+    padding-bottom: 5px;
+    text-align: center;
+   border-radius: 10px;
+    background:rgb(6, 143, 241);;
+    color:white;
+    font-weight: 700;
+    margin-right: 50px;
+    margin-left: 20px;
+    height:50px;
+    border:transparent;
+    z-index: 1;
+    cursor: pointer;
+    
+    
+}
+  
+ 
+
+.container2{
+    display: inline;
+}
+
+.head{
+    font-weight: 550;
+    margin-left: 320px;
+}
+
+.head2{
+    margin-left: 300px;
+}

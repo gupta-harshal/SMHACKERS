@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float,func
@@ -18,7 +18,7 @@ class User(db.Model):
     Password:Mapped[str]=mapped_column(String(250),nullable=False)
     Confirm_Password:Mapped[str]=mapped_column(String(250),nullable=False)
     Branch:Mapped[str] = mapped_column(String(250),nullable=False)
-    Status:Mapped[str] = mapped_column(String(250),nullable=False)
+    # Status:Mapped[str] = mapped_column(String(250),nullable=False)
     Current_Company:Mapped[str] = mapped_column(String(250),nullable=False)
     Current_Working_Position:Mapped[str] = mapped_column(String(250),unique=False,nullable=False)
     # Image:Mapped[str] = mapped_column(String(250),nullable=False)
@@ -41,7 +41,7 @@ with app.app_context():
     db.create_all()
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html',var=False)
 @app.route('/login')
 def logs():
     return render_template('index4.html')
@@ -76,17 +76,15 @@ def loggedin():
     var=False
     result = db.session.execute(db.select(User).order_by(User.First_Name))
     all_users=result.scalars()
+    global firstnames
     for user in all_users:
         Demail=user.Email
         Dpassword=user.Password
-        print(Demail)
+        firstnames=firstnames+user.First_Name
         if Demail==email and Dpassword==password:
             var=True
             key=user
-    if var:
-        return f"<h1>Successfully Logged in as {key.First_Name} {key.Last_Name}</h1>"
-    else:
-        return f"<h1>Your credentials dont match</h1>"
+    return render_template('index.html',var=var)
 @app.route('/about')
 def about():
     return render_template('about.html')
