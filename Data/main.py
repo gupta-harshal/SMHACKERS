@@ -41,7 +41,7 @@ with app.app_context():
     db.create_all()
 @app.route('/')
 def home():
-    return render_template('index.html',var=False)
+    return render_template('indexc.html')
 @app.route('/login')
 def logs():
     return render_template('index4.html')
@@ -57,18 +57,18 @@ def done():
     email=request.form["email"]
     password=request.form["password"]
     conpassword=request.form["conpassword"]
-    status=request.form["status"]
+    # status=request.form["status"]
     branch=request.form["branch"]
     company=request.form["company"]
     position=request.form["position"]
     # file=request.files["pic"]
     if password==conpassword:
         with app.app_context():
-            new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}",Confirm_Password=f"{conpassword}",Branch=f"{branch}",Status=f"{status}",Current_Company=f"{company}",Current_Working_Position=f"{position}")
+            new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}",Confirm_Password=f"{conpassword}",Branch=f"{branch}",Current_Company=f"{company}",Current_Working_Position=f"{position}")
         db.session.add(new_user)
         db.session.commit()
 
-    return f"<h1>Succesful Submission</h1>"
+    return render_template('login.html')
 @app.route('/login/successful',methods=['GET','POST'])
 def loggedin():
     email=request.form["email"]
@@ -80,11 +80,13 @@ def loggedin():
     for user in all_users:
         Demail=user.Email
         Dpassword=user.Password
-        firstnames=firstnames+user.First_Name
+        # firstnames=firstnames+user.First_Name
         if Demail==email and Dpassword==password:
             var=True
             key=user
-    return render_template('index.html',var=var)
+            return render_template('index.html')
+        else:
+            return render_template('login.html')
 @app.route('/about')
 def about():
     return render_template('about.html')

@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-     
-    </style>
+    <link href="../static/css/indexc.css" rel="stylesheet">
 </head>
 <body>
     <div class="banner">
         <div class="navbar">
             <ul>
-                <li><a class="y" href="./2.html">HOME</a></li>
-                <li><a class="y">ABOUT US</a></li>
+                <li><a class="y" href="{{url_for('home')}}">HOME</a></li>
+                <li><a class="y" href="{{url_for('about')}}">ABOUT US</a></li>
                 <li><a class="y">TOOLS</a> </li>
                 <li><a class="y">CONNECT</a></li>
-                <li ><a class="login x">LOG IN</a></li>
+                <li ><a class="login x" href="{{url_for('login')}}">LOG IN</a></li>
             </ul>
         </div>
 
