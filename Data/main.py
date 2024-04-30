@@ -3,11 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float,func
 from flask import jsonify
+import base64
+from My_packages import email
 app=Flask(__name__)
 class Base(DeclarativeBase):
     pass
+mail=email.Mail()
 app.config['SQLALCHEMY_DATABASE_URI'] = r"sqlite:///user_data.db"
-
+app.config["UPLOAD_EXTENSIONS"] = [".jpg", ".png"]
+app.config["UPLOAD_PATH"] = "image_uploads"
+app.jinja_env.filters['decode'] = base64.b64decode
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 class User(db.Model):
@@ -18,10 +23,10 @@ class User(db.Model):
     Password:Mapped[str]=mapped_column(String(250),nullable=False)
     Confirm_Password:Mapped[str]=mapped_column(String(250),nullable=False)
     Branch:Mapped[str] = mapped_column(String(250),nullable=False)
-    Status:Mapped[str] = mapped_column(String(250),nullable=False)
+    # Status:Mapped[str] = mapped_column(String(250),nullable=False)
     Current_Company:Mapped[str] = mapped_column(String(250),nullable=False)
     Current_Working_Position:Mapped[str] = mapped_column(String(250),unique=False,nullable=False)
-    # Image:Mapped[str] = mapped_column(String(250),nullable=False)
+    Image:Mapped[str] = mapped_column(String(100000),nullable=False)
     def to_dict(self):
         #Method 1. 
         dictionary = {}
@@ -41,7 +46,7 @@ with app.app_context():
     db.create_all()
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('indexc.html')
 @app.route('/login')
 def logs():
     return render_template('index4.html')
@@ -57,18 +62,21 @@ def done():
     email=request.form["email"]
     password=request.form["password"]
     conpassword=request.form["conpassword"]
-    status=request.form["status"]
+    # status=request.form["status"]
     branch=request.form["branch"]
     company=request.form["company"]
     position=request.form["position"]
-    # file=request.files["pic"]
+    file=request.files["pic"]
     if password==conpassword:
+        image_content = file.read()
+            # Encode the bytes-like object as a base64 string
+        image_64_encode = base64.b64encode(image_content).decode()
         with app.app_context():
-            new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}",Confirm_Password=f"{conpassword}",Branch=f"{branch}",Status=f"{status}",Current_Company=f"{company}",Current_Working_Position=f"{position}")
+            new_user = User(First_Name=f"{fname}",Last_Name=f"{lname}",Email=f"{email}",Password=f"{password}",Confirm_Password=f"{conpassword}",Branch=f"{branch}",Current_Company=f"{company}",Current_Working_Position=f"{position}",Image=f"{image_64_encode}")
         db.session.add(new_user)
         db.session.commit()
 
-    return f"<h1>Succesful Submission</h1>"
+    return render_template('login.html')
 @app.route('/login/successful',methods=['GET','POST'])
 def loggedin():
     email=request.form["email"]
@@ -76,17 +84,17 @@ def loggedin():
     var=False
     result = db.session.execute(db.select(User).order_by(User.First_Name))
     all_users=result.scalars()
+    global firstnames
     for user in all_users:
         Demail=user.Email
         Dpassword=user.Password
-        print(Demail)
+        # firstnames=firstnames+user.First_Name
         if Demail==email and Dpassword==password:
             var=True
-            key=user
-    if var:
-        return f"<h1>Successfully Logged in as {key.First_Name} {key.Last_Name}</h1>"
+    if var==True:
+        return render_template('index.html')
     else:
-        return f"<h1>Your credentials dont match</h1>"
+        return render_template('login.html')
 @app.route('/about')
 def about():
     return render_template('about.html')

@@ -18,9 +18,9 @@
        {%if var==True%}
        {%for data in users:%}  
        <div class="id">
-       <img src="https://dmxg5wxfqgb4u.cloudfront.net/2023-05/WALKER_JOHNNY_05-13.png" alt="">
+       <img src="data:image/png;base64,{{data.Image}}" alt="{{data.First_Name}}">
        <h2>{{data.First_Name.upper()+" "+data.Last_Name.upper()}}</h2>
-       <h3>{{data.Status}}<br>{{data.Branch}}</h3>
+       <h3>{{data.Current_Working_Position}}<br>{{data.Branch}}</h3>
        <!-- HTML !-->
 <button class="button-7" role="button">FOLLOW +</button>
 <!-- HTML !-->

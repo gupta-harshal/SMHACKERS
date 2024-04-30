@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
+    <form action="{{url_for('loggedin')}}" method='post'>
     <div class="container">
         <h1>LOGIN</h1>
         <!-- <input type="text" placeholder="First Name" class="name"> <input type="text" placeholder="Last Name" class="name"><br> -->
-        <input type="text" placeholder="Email" class="in"><br>
-        <input type="text" placeholder="Password" class="in"><br>
+        <input type="text" placeholder="Email" class="in" name="email"><br>
+        <input type="text" placeholder="Password" class="in" name="password"><br>
         <!-- <input type="text" placeholder="Confirm Password" class="in pass" > -->
         <!-- <input type="checkbox" id="terms" name="terms"> -->
         <!-- <label for="terms" class="terms">I accept the Terms of Use & Privacy Policy</label><br> -->
-        <button type="button">LOGIN</button>
-        <p>Need an account? <a href="./index.html">Sign Up</a></p>
+        <button type="submit">LOGIN</button>
+        <p>Need an account? <a href="{{url_for('logs')}}">Sign Up</a></p>
         <p>Copyright © SMHACKERS.com</p>
-     </div>    
+     </div> 
+     </form>   
 </body>
 
 </html>
